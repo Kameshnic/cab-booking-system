@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Buttons</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-image: url('https://c4.wallpaperflare.com/wallpaper/13/393/91/pink-sky-red-sky-white-car-car-wallpaper-preview.jpg'); /* Specify the URL of the background image */
+            background-size: cover; /* Cover the entire background */
+            background-position: center; /* Center the background image */
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 18px;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        h1 {
+            color: #fff; /* Header text color */
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Choose a Database</h1> <!-- Header -->
+    <div class="button-container">
+        <button class="button" onclick="window.location.href='/car'">Car</button>
+        <button class="button" onclick="window.location.href='/transaction'">Transaction</button>
+        <button class="button" onclick="window.location.href='/customer'">Customer</button>
+        <button class="button" onclick="window.location.href='/driver'">Driver</button>
+        <button class="button" onclick="window.location.href='/booking'">Booking</button>
+    </div>
+</body>
+</html>
+
+
+
+
+

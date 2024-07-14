@@ -1,0 +1,2089 @@
+#: import MapView kivy.garden.mapview.MapView
+#: import MapMarkerPopup kivy.garden.mapview.MapMarkerPopup
+
+
+WindowManager:
+    Start:
+    Continue:
+    Mainpage:
+    Roptionpage:
+    Doptionpage:
+    Dlogin:
+    Dsignin:
+    Rlogin:
+    Rsignin:
+    Riderpage:
+    Driverpage:
+    Signoutscreen:
+    Maketransactionscreen:
+    Canceltripscreen:
+    Booktripscreen:
+    Changepasswordscreen:
+    Checkdetails:
+    Bookinghistoryscreen:
+    Dcheckdetailscreen:
+    Dchangepasswordscreen:
+    Dtriphistoryscreen:
+    Dsignoutscreen:
+    Hii:
+    CarSelectionScreen:
+    Otp:
+    SelectionScreen:
+    Webpage:
+    Bill:
+    SendReview:
+    SplashScreen:
+    Whatsapp:
+
+
+
+<SplashScreen>:  
+    name:'team'
+
+
+
+
+<SendReview>:
+    name: 'review'
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '20dp'
+        spacing: '10dp'
+        canvas.before:
+            Rectangle:
+                source: 'C:\\Users\\dhanu\\OneDrive\\Desktop\\porsche-911-carrera_100787037_h.jpg'
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: 'HELLO WELCOME TO REVIEW PAGE GIVE YOUR REVIEWS!'
+            size_hint_y: None
+            height: dp(40)
+            font_size: '20sp'
+            bold: True
+
+        Label:
+            id: rating_label
+            text: 'Rating:'
+            size_hint_y: None
+            height: dp(40)
+            font_size: '18sp'
+
+        Slider:
+            id: rating_slider
+            min: 0
+            max: 5
+            step: 1
+            value: 0
+            size_hint_y: None
+            height: dp(40)
+
+        Label:
+            text: 'Review:'
+            size_hint_y: None
+            height: dp(40)
+            font_size: '18sp'
+
+        TextInput:
+            id: review_input
+            hint_text: 'Write your review here...'
+            size_hint_y: None
+            height: dp(100)
+
+        Label:
+            text: 'Receiver Email:'
+            size_hint_y: None
+            height: dp(40)
+            font_size: '18sp'
+
+        TextInput:
+            id: email_input
+            hint_text: 'Enter receiver email address'
+            size_hint_y: None
+            height: dp(40)
+
+        Label:
+            size_hint_y: None
+            height: dp(20)
+
+        Button:
+            text: 'Send Review'
+            size_hint_y: None
+            height: dp(40)
+            font_size: '18sp'
+            on_release: root.send_review()
+
+        MDIconButton:
+            icon: "arrow-left"
+            size_hint_y: None
+            height: dp(48)
+            on_release: app.root.current = 'rider'  # Change 'continue' to the screen name you want to navigate to
+
+<Whatsapp>:
+    name: 'what'
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '20dp'
+        
+        canvas.before:
+            Rectangle:
+                # Assuming the image is in the images folder
+                source:"C:\\Users\\dhanu\\OneDrive\\Desktop\\th.jpeg"
+                size: self.size
+                pos: self.pos
+
+        BoxLayout:
+            size_hint_y: None
+            height: '60dp'
+            padding: '10dp'
+            spacing: '10dp'
+            
+            Button:
+                text: '<'
+                size_hint_x: None
+                width: '40dp'
+                on_release: root.manager.current = 'rideroption'
+                # You can use an icon instead of text if you have one
+                # background_normal: 'images/arrow_icon.png'
+                # background_down: 'images/arrow_icon_down.png'
+                # size: (50, 50)
+                
+            Label:
+                text: "WhatsApp Notification"
+                font_size: '24sp'
+                bold: True
+                color: (1, 1, 1, 1)
+                halign: 'center'
+                valign: 'middle'
+                size_hint_x: 1
+
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: '10dp'
+            padding: '20dp'
+
+            TextInput:
+                id: phone_number
+                hint_text: "Enter Phone Number"
+                multiline: False
+                size_hint_y: None
+                height: '50dp'
+                font_size: '18sp'
+                background_color: (1, 1, 1, 0.5)  # Semi-transparent background
+                foreground_color: (0, 0, 0, 1)  # Black text color
+                padding: '10dp'
+                radius: [10, 10, 10, 10]
+
+            Button:
+                text: "Send Ride Details"
+                size_hint_y: None
+                height: '50dp'
+                font_size: '18sp'
+                background_color: (0.1, 0.5, 0.1, 1)  # Green button
+                color: (1, 1, 1, 1)  # White text
+                on_release: root.book_ride()
+                radius: [10, 10, 10, 10]
+
+        ScrollView:
+            GridLayout:
+                id: booking_history
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: '10dp'
+                padding: '10dp'
+
+
+
+
+<Bill>:
+    name: 'bill'
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '20dp'
+        spacing: '10dp'
+        canvas.before:
+            Rectangle:
+                source: 'Mahindra_Thar_Photoshoot_At_Perupalem_Beach_West_Godavari_DistrictAPIndia__Djdavid.webp'
+                pos: self.pos
+                size: self.size
+
+        MDIconButton:
+            icon: 'arrow-right'
+            size_hint: None, None
+            size: '48dp', '48dp'
+            pos_hint: {'x': 0, 'top': 1}
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.current = "rider"
+
+        MDTextField:
+            id: name
+            mode: "filled"
+            guide_text: "name"
+            icon_right: "eye"
+            helper_text: "Required"
+            helper_text_mode: "on_error"
+            size_hint_y: None
+            height: "40dp"
+            MDTextFieldHintText:
+                text: "name"
+                helper_text: "name"
+
+        MDTextField:
+            id: emailid
+            mode: "filled"
+            guide_text: "Emailid"
+            icon_right: "eye"
+            helper_text: "Required"
+            helper_text_mode: "on_error"
+            size_hint_y: None
+            height: "40dp"
+            MDTextFieldHintText:
+                text: "Emailid"
+                helper_text: "Emailid"
+
+        MDTextField:
+            id: review
+            mode: "filled"
+            guide_text: "Emailid"
+            icon_right: "eye"
+            helper_text: "Required"
+            helper_text_mode: "on_error"
+            size_hint_y: None
+            height: "40dp"
+            MDTextFieldHintText:
+                text: "Review"
+                helper_text: "Review"
+
+        MDLabel:
+            id: status
+            halign: "center"
+            valign: "middle"
+
+        Button:
+            text: "Send Mail"
+            size_hint: None, None
+            size: "200dp", "48dp"
+            pos_hint: {"center_x": 0.5}
+            on_release: root.send_hi()
+
+        Button:
+            text: "Back"
+            size_hint: None, None
+            size: '200dp', '48dp'
+            background_color: (1,1,1,1)
+            pos_hint: {'center_x': 0.5}
+            on_release: root.clearDetails()
+ 
+
+
+<Webpage>:
+    name: 'web'
+    orientation: "vertical"
+    
+    MDFloatLayout:
+        MDIconButton:
+            icon: "arrow-right"
+            size_hint: None, None
+            size: '48dp', '48dp'
+            pos_hint: {'x': 0, 'top': 1}
+            on_release: root.manager.current = "selection"
+    
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(10)
+        spacing: dp(20)  # Increased spacing between widgets
+        
+        canvas.before:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'background_image.jpg'  # Path to your background image
+
+        Label:
+            text: "Google Maps"
+            font_size: '36sp'  # Larger font size
+            bold: True
+            size_hint_y: None
+            height: self.texture_size[1] + dp(20)  # Adjusted height
+            
+        Label:
+            text: "You can ensure your routes in Google Maps!"
+            font_size: '20sp'  # Increased font size
+            size_hint_y: None
+            height: self.texture_size[1]
+        
+        Label:
+            text: "Enjoy your Ride!"
+            font_size: '20sp'  # Increased font size
+            size_hint_y: None
+            height: self.texture_size[1]
+        
+        Label:
+            text: "Turn on your GPS and start exploring."
+            font_size: '20sp'  # Increased font size
+            size_hint_y: None
+            height: self.texture_size[1]
+        
+        Button:
+            text: "Open Google Maps"
+            background_normal: ''
+            background_color: (0, 0.7, 0.5, 1)
+            color: (1, 1, 1, 1)
+            size_hint_y: None
+            height: dp(48)
+            font_size: '20sp'  # Increased font size
+            on_release: root.open_google_maps()
+
+
+<CarSelectionScreen>:
+    name: 'car_selection'
+
+    ScrollView:
+        GridLayout:
+            id: grid_layout
+            cols: 3
+            spacing: 20
+            padding: 20
+            size_hint_y: None
+            height: self.minimum_height
+            size_hint_x: None
+            width: self.minimum_width
+    MDFloatLayout:
+        MDIconButton:
+            icon: "arrow-right"
+            size_hint: None, None
+            size: '48dp', '48dp'
+            pos_hint: {'x': 0, 'top': 1}
+            on_release: root.manager.current = "web"
+  
+
+
+<Start>:
+    name: "start"
+    background_color: (1, 1, 1, 1)
+    GridLayout:
+        cols: 1  # Single column layout
+        size_hint: 1, 1  # Set the layout to fill the entire screen
+
+        Video:
+            source: 'Mahindra Thar Funky Cinematic 4K Cars Reel Edit 🚗❤️_ Mahindra _ Pranay Jiljith.mp4'
+            state: 'play'
+            size_hint: 1, 1  # Fill the entire screen
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}  # Center the video
+
+        Button: 
+            text: "FireWheel"
+            background_normal: ''
+            background_color: (1, 1, 1, 1)
+            color: (0, 0, 0, 1)
+            size_hint: 1, None
+            height: dp(48)  # Set button height
+            pos_hint: {'x': 0, 'y': 0}  # Position the button at the bottom
+            on_release:
+                root.manager.current = "team"
+
+
+   
+
+<SelectionScreen>:
+    name: "selection"
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 10
+        padding: [10, 50, 10, 10]
+
+        # Background Image
+        canvas.before:
+            Rectangle:
+                source: 'C:\\Users\\dhanu\\OneDrive\\Desktop\\hello\\KivyMD\\kivymd\\wp2506451.jpg'
+                size: self.size
+                pos: self.pos
+        MDFloatLayout:
+            MDIconButton:
+                icon: "arrow-right"
+                size_hint: None, None
+                size: '48dp', '48dp'
+                pos_hint: {'x': 0, 'top': 1}
+                on_release: root.manager.current = "otp"      
+                    
+
+        # Label to display selected car details
+
+
+                
+<Hii>:
+    name: 'map'
+    BoxLayout:
+        orientation: 'vertical'
+        MapView:
+            lat: 12.752850484266096
+            lon: 80.19326220596132
+            zoom: 10
+
+            MapMarkerPopup:
+                lat: 12.9548473
+                lon: 80.1852685
+                source: 'C:\\Users\\dhanu\\Downloads\\car-967387_1280 (2).jpg'  # Replace with your marker icon
+                popup_size: dp(230), dp(130)
+                Bubble:
+                    MDBoxLayout:
+                        padding: "4dp"
+                        AsyncImage:
+                            source: "face.jpeg"  # Replace with the image path
+                            size_hint: None, None
+                            size: dp(30), dp(30)  # Adjust the size as needed
+                            pos_hint: {"center_x": 0.5}
+                            allow_stretch: True
+                            keep_ratio: True
+                        MDLabel:
+                            text: "sivakumar"
+                            markup: True
+                            halign: "center"
+            MapMarkerPopup:
+                lat: 13.0087
+                lon: 80.220
+                source: 'C:\\Users\\dhanu\\Downloads\\car-967387_1280 (2).jpg'
+                popup_size: dp(230), dp(130)
+                Bubble:
+                    MDBoxLayout:
+                        padding: "4dp"
+                        AsyncImage:
+                            source: "face.jpeg"  # Replace with the image path
+                            size_hint: None, None
+                            size: dp(30), dp(30)  # Adjust the size as needed
+                            pos_hint: {"center_x": 0.5}
+                            allow_stretch: True
+                            keep_ratio: True
+                        MDLabel:
+                            text: "ponsubash"
+                            markup: True
+                            halign: "center"      
+
+            MapMarkerPopup:
+                lat: 12.787
+                lon: 80.219
+                source: 'C:\\Users\\dhanu\\Downloads\\car-967387_1280 (2).jpg'  # Replace with your marker icon
+                popup_size: dp(230), dp(130)
+                Bubble:
+                    MDBoxLayout:
+                        padding: "4dp"
+                        AsyncImage:
+                            source: "face.jpeg"  # Replace with the image path
+                            size_hint: None, None
+                            size: dp(30), dp(30)  # Adjust the size as needed
+                            pos_hint: {"center_x": 0.5}
+                            allow_stretch: True
+                            keep_ratio: True
+                        MDLabel:
+                            text: "amudhakavi"
+                            markup: True
+                            halign: "center"  
+            MapMarkerPopup:
+                lat: 12.892
+                lon: 80.082
+                source: 'C:\\Users\\dhanu\\Downloads\\car-967387_1280 (2).jpg'  # Replace with your marker icon
+                popup_size: dp(230), dp(130)
+                Bubble:
+                    MDBoxLayout:
+                        padding: "4dp"
+                        AsyncImage:
+                            source: "face.jpeg"  # Replace with the image path
+                            size_hint: None, None
+                            size: dp(30), dp(30)  # Adjust the size as needed
+                            pos_hint: {"center_x": 0.5}
+                            allow_stretch: True
+                            keep_ratio: True
+                        MDLabel:
+                            text: "dhanush"
+                            markup: True
+                            halign: "center"   
+            MapMarkerPopup:
+                lat: 13.071
+                lon: 80.201
+                source: 'C:\\Users\\dhanu\\Downloads\\car-967387_1280 (2).jpg'  # Replace with your marker icon
+                popup_size: dp(230), dp(130)
+                Bubble:
+                    MDBoxLayout:
+                        padding: "4dp"
+                        AsyncImage:
+                            source: "face.jpeg"  # Replace with the image path
+                            size_hint: None, None
+                            size: dp(30), dp(30)  # Adjust the size as needed
+                            pos_hint: {"center_x": 0.5}
+                            allow_stretch: True
+                            keep_ratio: True
+                        MDLabel:
+                            text: "swetha"
+                            markup: True
+                            halign: "center" 
+            MapMarkerPopup:
+                lat: 13.006
+                lon: 80.257
+                source: 'C:\\Users\\dhanu\\Downloads\\car-967387_1280 (2).jpg'  # Replace with your marker icon
+                popup_size: dp(230), dp(130)
+                Bubble:
+                    MDBoxLayout:
+                        padding: "4dp"
+                        AsyncImage:
+                            source: "face.jpeg"  # Replace with the image path
+                            size_hint: None, None
+                            size: dp(30), dp(30)  # Adjust the size as needed
+                            pos_hint: {"center_x": 0.5}
+                            allow_stretch: True
+                            keep_ratio: True
+                        MDLabel:
+                            text: "shanakar"
+                            markup: True
+                            halign: "center"    
+            MapMarkerPopup:
+                lat: 12.985
+                lon: 80.264
+                source: 'C:\\Users\\dhanu\\Downloads\\car-967387_1280 (2).jpg'  # Replace with your marker icon
+                popup_size: dp(230), dp(130)
+                Bubble:
+                    MDBoxLayout:
+                        padding: "4dp"
+                        AsyncImage:
+                            source: "face.jpeg"  # Replace with the image path
+                            size_hint: None, None
+                            size: dp(30), dp(30)  # Adjust the size as needed
+                            pos_hint: {"center_x": 0.5}
+                            allow_stretch: True
+                            keep_ratio: True
+                        MDLabel:
+                            text: "dileepram"
+                            markup: True
+                            halign: "center"  
+            MapMarkerPopup:
+                lat: 12.980
+                lon: 80.222
+                source: 'C:\\Users\\dhanu\\Downloads\\car-967387_1280 (2).jpg'  # Replace with your marker icon
+                popup_size: dp(230), dp(130)
+                Bubble:
+                    MDBoxLayout:
+                        padding: "4dp"
+                        AsyncImage:
+                            source: "face.jpeg"  # Replace with the image path
+                            size_hint: None, None
+                            size: dp(30), dp(30)  # Adjust the size as needed
+                            pos_hint: {"center_x": 0.5}
+                            allow_stretch: True
+                            keep_ratio: True
+                        MDLabel:
+                            text: "madhuvishagan"
+                            markup: True
+                            halign: "center" 
+            MapMarkerPopup:
+                lat: 10.804
+                lon: 78.687
+                source: 'C:\\Users\\dhanu\\Downloads\\car-967387_1280 (2).jpg'  # Replace with your marker icon
+                popup_size: dp(230), dp(130)
+                Bubble:
+                    MDBoxLayout:
+                        padding: "4dp"
+                        AsyncImage:
+                            source: "face.jpeg"  # Replace with the image path
+                            size_hint: None, None
+                            size: dp(30), dp(30)  # Adjust the size as needed
+                            pos_hint: {"center_x": 0.5}
+                            allow_stretch: True
+                            keep_ratio: True
+                        MDLabel:
+                            text: "pranesh"
+                            markup: True
+                            halign: "center" 
+            MapMarkerPopup:
+                lat: 12.9548473
+                lon: 80.1852685
+                source: 'C:\\Users\\dhanu\\Downloads\\car-967387_1280 (2).jpg'  # Replace with your marker icon
+                popup_size: dp(230), dp(130)
+                Bubble:
+                    MDBoxLayout:
+                        padding: "4dp"
+                        AsyncImage:
+                            source: "face.jpeg"  # Replace with the image path
+                            size_hint: None, None
+                            size: dp(30), dp(30)  # Adjust the size as needed
+                            pos_hint: {"center_x": 0.5}
+                            allow_stretch: True
+                            keep_ratio: True
+                        MDLabel:
+                            text: "vignesh"
+                            markup: True
+                            halign: "center"
+            MapMarkerPopup:
+                lat: 10.766
+                lon: 79.635
+                source: 'C:\\Users\\dhanu\\Downloads\\car-967387_1280 (2).jpg'  # Replace with your marker icon
+                popup_size: dp(230), dp(130)
+                Bubble:
+                    MDBoxLayout:
+                        padding: "4dp"
+                        AsyncImage:
+                            source: "face.jpeg"  # Replace with the image path
+                            size_hint: None, None
+                            size: dp(30), dp(30)  # Adjust the size as needed
+                            pos_hint: {"center_x": 0.5}
+                            allow_stretch: True
+                            keep_ratio: True
+                        MDLabel:
+                            text: "dinesh"
+                            markup: True
+                            halign: "center"  
+            MapMarkerPopup:
+                lat: 8.079
+                lon: 77.549
+                source: 'C:\\Users\\dhanu\\Downloads\\car-967387_1280 (2).jpg'  # Replace with your marker icon
+                popup_size: dp(230), dp(130)
+                Bubble:
+                    MDBoxLayout:
+                        padding: "4dp"
+                        AsyncImage:
+                            source: "face.jpeg"  # Replace with the image path
+                            size_hint: None, None
+                            size: dp(30), dp(30)  # Adjust the size as needed
+                            pos_hint: {"center_x": 0.5}
+                            allow_stretch: True
+                            keep_ratio: True
+                        MDLabel:
+                            text: "kamesh"
+                            markup: True
+                            halign: "center" 
+            MapMarkerPopup:
+                lat: 13.049
+                lon: 80.224
+                source: 'C:\\Users\\dhanu\\Downloads\\car-967387_1280 (2).jpg'  # Replace with your marker icon
+                popup_size: dp(230), dp(130)
+                Bubble:
+                    MDBoxLayout:
+                        padding: "4dp"
+                        AsyncImage:
+                            source: "face.jpeg"  # Replace with the image path
+                            size_hint: None, None
+                            size: dp(30), dp(30)  # Adjust the size as needed
+                            pos_hint: {"center_x": 0.5}
+                            allow_stretch: True
+                            keep_ratio: True
+                        MDLabel:
+                            text: "akisher"
+                            markup: True
+                            halign: "center"                                                                                                                                                                         
+
+
+            
+
+            
+                            
+    MDFloatLayout:
+        MDIconButton:
+            icon: "arrow-right"
+            size_hint: None, None
+            size: '48dp', '48dp'
+            pos_hint: {'x': 0, 'top': 1}
+            on_release: root.manager.current = "booktrip"
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+<Mainpage>:
+    name: "Mainpage"
+    RelativeLayout:
+        Video:
+            source: 'A_drive_like_no_other_the_Porsche_911_GT3_DZAdVY9kKbc_137.mp4'
+            state: 'play'
+            options: {'eos': 'loop'}
+            size_hint: None, None
+            size: root.width, root.height
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+        Button:
+            text: "RIDER"
+            font_size: "24sp"
+            font_weight: "bold"
+            background_color: (1, 1, 1, 0)  # Make button background transparent
+            size_hint: 0.4, 0.1
+            pos_hint: {'center_x': 0.5, 'center_y': 0.4}  # Center horizontally and place vertically
+            on_release:
+                root.manager.transition.direction: 'left'
+                root.manager.current = "rideroption"
+
+        Button:
+            text: "DRIVER"
+            font_size: "24sp"
+            font_weight: "bold"
+            background_color: (1, 1, 1, 0)  # Make button background transparent
+            size_hint: 0.4, 0.1
+            pos_hint: {'center_x': 0.5, 'center_y': 0.3}  # Center horizontally and place vertically
+            on_release:
+                root.manager.transition.direction: 'left'
+                root.manager.current = "driveroption"
+<DOptionpage>:
+    name: "driveroption"
+
+    RelativeLayout:
+        Video:
+            source: 'Freshhkiicks Nismo R35 GTR [4K].mp4'  # Replace with your video file path
+            state: 'play'
+            size_hint: None, None
+            size: 5000,5000# Set the size of the video
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        MDIconButton:
+            icon: 'arrow-left'
+            size_hint: None, None
+            size: '48dp', '48dp'
+            pos_hint: {'x': 0, 'top': 1}
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "Mainpage"
+            pos_hint: {'center_x': 0.5}       # Cente
+
+        Button:
+            text: "SIGN IN"
+            font_style: "Title"
+            size_hint: None, None
+            size: '200dp', '48dp'
+            background_color: (1, 1, 1, 1)
+            pos_hint: {'x': 0.1, 'y': 0.1}  
+            on_release:
+                root.manager.transition.direction = 'left'
+                root.manager.current = "driversignin"
+
+        Button:
+            text: "LOGIN"
+            font_style: "Title"
+            size_hint: None, None
+            size: '200dp', '48dp'
+            background_color: (1, 1, 1, 1)
+            pos_hint: {'right': 0.9, 'y': 0.1}
+            on_release:
+                root.manager.transition.direction = 'left'
+                root.manager.current = "driverlogin"
+<ROptionpage>:
+    name: "rideroption"
+
+    RelativeLayout:
+        Video:
+            source: 'WhatsApp Video 2024-05-16 at 14.55.34_c42ce04b.mp4'  # Replace with your video file path
+            state: 'play'
+            size_hint: None, None
+            size: 5000,5000# Set the size of the video
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}  # Center the video in the screen
+        
+        MDIconButton:
+            icon: 'arrow-left'
+            size_hint: None, None
+            size: '48dp', '48dp'
+            pos_hint: {'x': 0, 'top': 1}
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "Mainpage"
+            pos_hint: {'center_x': 0.5}    
+
+        Button:
+            text: "SIGN IN"
+            font_style: "Title"
+            size_hint: None, None
+            size: '200dp', '48dp'
+            background_color: (1, 1, 1, 1)
+            pos_hint: {'x': 0.1, 'y': 0.1}  # Adjust the position as needed
+            on_release:
+                root.manager.transition.direction = 'left'
+                root.manager.current = "ridersignin"
+        
+        Button:
+            text: "LOGIN"
+            font_style: "Title"
+            size_hint: None, None
+            size: '200dp', '48dp'
+            background_color: (1, 1, 1, 1)
+            pos_hint: {'right': 0.9, 'y': 0.1}  # Adjust the position as needed
+            on_release:
+                root.manager.transition.direction = 'left'
+                root.manager.current = "riderlogin"
+
+
+<Continue>:
+    name: "continue"
+    background_color: (1, 1, 1, 1)
+    MDBoxLayout:
+        orientation: 'vertical'
+        Video:
+            source: '321100069_363704536019965_681441712734373029_n.mp4'  # Replace 'your_video.mp4' with the path to your video file
+            state: 'play'
+            options: {'eos': 'loop'}
+            size_hint_y: 0.75  # Video takes 75% of the height
+            pos_hint: {'center_x': 0.5}  # Center the video horizontally
+        Button:
+            font_size: 32
+            background_normal: ''
+            background_color: (1, 1, 1, 1)
+            text: "RIDE"
+            size_hint: 1, 0.1
+            pos_hint: {'x': 0, 'y': 0.1}  # Button takes the full width, positioned at 10% from the bottom
+            color: (0, 0, 0, 1)
+            on_release:
+                root.manager.transition.direction: 'left'
+                root.manager.current = "Mainpage"
+
+
+
+
+
+
+
+
+<Dsignin>:
+    name: "driversignin"
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint: None, None
+        size: root.width, root.height
+        padding: '20dp'
+        spacing: '10dp'
+        canvas.before:
+            Rectangle:
+                source: 'C:\\Users\\dhanu\\OneDrive\\Desktop\\2695135.webp'  # Replace with your image path
+                pos: self.pos
+                size: self.size
+        MDIconButton:
+            icon: 'arrow-left'
+            size_hint: None, None
+            size: '48dp', '48dp'
+            pos_hint: {'x': 0, 'top': 1}
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "continue"
+    
+        GridLayout:
+            cols: 1
+            spacing: '10dp'
+            size_hint_y: None
+            height: self.minimum_height
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}  # Centering the GridLayout horizontally and vertically
+            MDTextField:
+                id: username_field
+                mode: "filled"
+                hint_text: "Username"
+                icon_right: "account"
+                helper_text: "Required"
+                helper_text_mode: "on_error"
+                size_hint_y: None
+                height: "40dp" 
+                MDTextFieldHintText:
+                    text: "UserName"
+                    helper_text: "UserName"  # Adjust the height as needed
+            MDTextField:
+                id: password_field
+                mode: "filled"
+                hint_text: "Password"
+                icon_right: "eye"
+                helper_text: "Required"
+                helper_text_mode: "on_error"
+                password: True
+                size_hint_y: None
+                height: "40dp"
+                MDTextFieldHintText:
+                    text: "Password"
+                    helper_text: "Password"
+            MDTextField:
+                id: confirmpassword
+                mode: "filled"
+                hint_text: "Confirm Password"
+                icon_right: "eye"
+                helper_text: "Required"
+                helper_text_mode: "on_error"
+                password: True
+                size_hint_y: None
+                height: "40dp"
+                MDTextFieldHintText:
+                    text: "ConfirmPassword"
+                    helper_text: "ConfirmPassword"        
+            MDTextField:
+                id: type_field
+                mode: "filled"
+                hint_text: "Rider/Driver"
+                icon_right: "account-multiple"
+                helper_text: "Required"
+                helper_text_mode: "on_error"
+                size_hint_y: None
+                height: "40dp"
+                MDTextFieldHintText:
+                    text: "Rider/Driver"
+                    helper_text: "Rider/Driver"  # Adjust the height as needed
+            MDTextField:
+                id: mobile_field
+                mode: "filled"
+                hint_text: "Mobile Number"
+                icon_right: "cellphone"
+                helper_text: "Required"
+                helper_text_mode: "on_error"
+                size_hint_y: None
+                height: "40dp"
+                MDTextFieldHintText:
+                    text: "Mobile Number"
+                    helper_text: "Mobile Number"  # Adjust the height as needed
+            MDTextField:
+                id: brand_field
+                mode: "filled"
+                hint_text: "Car Brand"
+                icon_right: "car"
+                helper_text: "Required"
+                helper_text_mode: "on_error"
+                size_hint_y: None
+                height: "40dp"
+                MDTextFieldHintText:
+                    text: "Car Brand"
+                    helper_text: "Car Brand"  # Adjust the height as needed
+            MDTextField:
+                id: model_field
+                mode: "filled"
+                hint_text: "Car Model"
+                icon_right: "car"
+                helper_text: "Required"
+                helper_text_mode: "on_error"
+                size_hint_y: None
+                height: "40dp"
+                MDTextFieldHintText:
+                    text: "Car Model"
+                    helper_text: "Car Model"  # Adjust the height as needed
+            MDTextField:
+                id: registration_field
+                mode: "filled"
+                hint_text: "Registration Number"
+                icon_right: "car"
+                helper_text: "Required"
+                helper_text_mode: "on_error"
+                size_hint_y: None
+                height: "40dp"
+                MDTextFieldHintText:
+                    text: "Registration Number"
+                    helper_text: "Registration Number"  # Adjust the height as needed
+            MDTextField:
+                id: capacity_field
+                mode: "filled"
+                hint_text: "Car Capacity"
+                icon_right: "car"
+                helper_text: "Required"
+                helper_text_mode: "on_error"
+                size_hint_y: None
+                height: "40dp"
+                MDTextFieldHintText:
+                    text: "Car Capacity"
+                    helper_text: "Car Capacity"  # Adjust the height as needed
+            MDTextField:
+                id: price_field
+                mode: "filled"
+                hint_text: "Price per km"
+                icon_right: "car"
+                helper_text: "Required"
+                helper_text_mode: "on_error"
+                size_hint_y: None
+                height: "40dp"
+                MDTextFieldHintText:
+                    text: "Price per km"
+                    helper_text: "Price per km"
+            MDTextField:
+                id: current_field
+                mode: "filled"
+                hint_text: "current location"
+                icon_right: "car"
+                helper_text: "Required"
+                helper_text_mode: "on_error"
+                size_hint_y: None
+                height: "40dp"
+                MDTextFieldHintText:
+                    text: "current location"
+                    helper_text: "current location"         
+        
+            Button:
+                text: "Submit"
+                size_hint: None, None
+                size: '200dp', '48dp'
+                background_color: (1,1,1,1)
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                on_release: root.signUpDriverPage()
+
+
+<Dlogin>:
+    name: "driverlogin"
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint: None, None
+        size: root.width, root.height
+        padding: '20dp'
+        spacing: '10dp'
+        canvas.before:
+            Rectangle:
+                source: 'C:\\Users\\dhanu\\OneDrive\\Desktop\\2695135.webp'  # Path to your background image
+                pos: self.pos
+                size: self.size
+        MDIconButton:
+            icon: 'arrow-left'
+            size_hint: None, None
+            size: '48dp', '48dp'
+            pos_hint: {'x': 0, 'top': 1}
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "continue"
+    
+        GridLayout:
+            cols: 1
+            spacing: '10dp'
+            size_hint_y: None
+            height: self.minimum_height
+            pos_hint: {'center_x': 0.6,'center_y':0.5}  # Centering the GridLayout horizontally
+            MDTextField:
+                id: username_field
+                mode: "filled"
+                hint_text: "Username"
+                icon_right: "account"
+                helper_text: "Required"
+                helper_text_mode: "on_error"
+                size_hint_y: None
+                height: "40dp"
+                MDTextFieldHintText:
+                    text: "User Name"
+                    heper_text: "User Name "   # Adjust the height as needed
+            MDTextField:
+                id: password_field
+                mode: "filled"
+                guide_tex:"password"
+                icon_right: "eye"
+                helper_text: "Required"
+                helper_text_mode: "on_error"
+                password: True
+                size_hint_y: None
+                height: "40dp"
+                MDTextFieldHintText:
+                    text: "Password"
+                    heper_text: "Password"   # Adjust the height as needed
+            MDTextField:
+                id: type_field
+                mode: "filled"
+                hint_text: "Rider/Driver"
+                icon_right: "account-multiple"
+                helper_text: "Required"
+                helper_text_mode: "on_error"
+                size_hint_y: None
+                height: "40dp" 
+                MDTextFieldHintText:
+                    text: "Rider/Driver"
+                    heper_text: "Rider/Driver" # Adjust the height as needed
+            MDTextField:
+                id: mobile_field
+                mode: "filled"
+                hint_text: "Mobile Number"
+                icon_right: "cellphone"
+                helper_text: "Required"
+                helper_text_mode: "on_error"
+                size_hint_y: None
+                height: "40dp"
+                MDTextFieldHintText:
+                    text: "mobile number"
+                    heper_text: "mobile number"  # Adjust the height as needed
+            Button:
+                text: "Submit"
+                size_hint: None, None
+                size: '200dp', '48dp'
+                background_color: (1,1,1,1)
+                pos_hint: {'center_x': 0.6,'center_y':0.5}
+                on_release:
+                    root.signInDriverPage()
+<Otp>:
+    name: 'otp'
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '20dp'
+        spacing: '10dp'
+        canvas.before:
+            Rectangle:
+                source: 'Mahindra_Thar_Photoshoot_At_Perupalem_Beach_West_Godavari_DistrictAPIndia__Djdavid.webp'
+                pos: self.pos
+                size: self.size
+        MDIconButton:
+            icon: 'arrow-right'
+            size_hint: None, None
+            size: '48dp', '48dp'
+            pos_hint: {'x': 0, 'top': 1}
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "maketransaction"
+        Widget:        
+        MDTextField:
+            id: name
+            mode: "filled"
+            guide_text: "name"
+            icon_right: "eye"
+            helper_text: "Required"
+            helper_text_mode: "on_error"
+            size_hint_y: None
+            height: "40dp"
+            MDTextFieldHintText:
+                text: "name"
+                helper_text: "name"
+        MDTextField:
+            id: emailid
+            mode: "filled"
+            guide_text: "Emailid"
+            icon_right: "eye"
+            helper_text: "Required"
+            helper_text_mode: "on_error"
+            size_hint_y: None
+            height: "40dp"
+            MDTextFieldHintText:
+                text: "Emailid"
+                helper_text: "Emailid"         
+        MDTextField:
+            id: otp_field
+            mode: "filled"
+            guide_text: "Enter your otp"
+            icon_right: "eye"
+            helper_text: "Required"
+            helper_text_mode: "on_error"
+            size_hint_y: None
+            height: "40dp"
+            MDTextFieldHintText:
+                text: "Enter your otp"
+                helper_text: "Enter your otp"
+        MDLabel:
+            id: status
+            halign: "center"
+            valign: "middle"        
+        Button:
+            text: "Send OTP"
+            size_hint: None, None
+            size: "200dp", "48dp"
+            pos_hint: {"center_x": 0.5}
+            on_release: root.send_otp()
+        Button:
+            text: "Submit"
+            size_hint: None, None
+            size: '200dp', '48dp'
+            background_color: (1,1,1,1)
+            pos_hint: {'center_x': 0.5}
+            on_release: root.validate_otp()
+
+
+
+<Rsignin>:
+    name: "ridersignin"
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '20dp'
+        spacing: '10dp'
+    
+        canvas.before:
+            Rectangle:
+                source: 'C:\\Users\\dhanu\\OneDrive\\Desktop\\wp1979790.jpg'  # Replace with your image path
+                pos: self.pos
+                size: self.size
+        MDIconButton:
+            icon: 'arrow-left'
+            size_hint: None, None
+            size: '48dp', '48dp'
+            pos_hint: {'x': 0, 'top': 1}
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "continue"
+    
+        # Centering the GridLayout horizontally
+        MDTextField:
+            id: username_field
+            mode: "filled"
+            hint_text: "Username"
+            icon_right: "account"
+            helper_text: "Required"
+            helper_text_mode: "on_error"
+            size_hint_y: None
+            height: "40dp" 
+            MDTextFieldHintText:
+                text: "UserName"
+                heper_text: "UserName" # Adjust the height as needed
+        MDTextField:
+            id: password_field
+            mode: "filled"
+            guide_tex: "password"
+            icon_right: "eye"
+            helper_text: "Required"
+            helper_text_mode: "on_error"
+            password: True
+            size_hint_y: None
+            height: "40dp"
+            MDTextFieldHintText:
+                text: "Password"
+                heper_text: "Password"
+        MDTextField:
+            id: confirmpassword
+            mode: "filled"
+            guide_tex: "password"
+            icon_right: "eye"
+            helper_text: "Required"
+            helper_text_mode: "on_error"
+            password: True
+            size_hint_y: None
+            height: "40dp"
+            MDTextFieldHintText:
+                text: "ConfirmPassword"
+                heper_text: "ConfirmPassword"        
+            # Adjust the height as needed
+        MDTextField:
+            id: type_field
+            mode: "filled"
+            hint_text: "Rider/Driver"
+            icon_right: "account-multiple"
+            helper_text: "Required"
+            helper_text_mode: "on_error"
+            size_hint_y: None
+            height: "40dp"
+            MDTextFieldHintText:
+                text: "Rider/Driver"
+                heper_text: "Rider/Driver"   # Adjust the height as needed
+        MDTextField:
+            id: mobile_field
+            mode: "filled"
+            hint_text: "Mobile Number"
+            icon_right: "cellphone"
+            helper_text: "Required"
+            helper_text_mode: "on_error"    
+            size_hint_y: None
+            height: "40dp"
+            MDTextFieldHintText:
+                text: "Mobile Number"
+                heper_text: "Mobile  Number"  # Adjust the height as needed
+        Button:
+            text: "Submit"
+            size_hint: None, None
+            size: '200dp', '48dp'
+            background_color: (1,1,1,1)
+            pos_hint: {'center_x': 0.6,'center_y':0.5}
+            on_release:
+                root.validate_fields()
+
+
+
+
+<Rlogin>:
+    name: "riderlogin"
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '20dp'
+        spacing: '10dp'
+        canvas.before:
+            Rectangle:
+                source: 'C:\\Users\\dhanu\\OneDrive\\Desktop\\wp1979790.jpg'  # Path to your background image
+                pos: self.pos
+                size: self.size
+        MDIconButton:
+            icon: 'arrow-left'
+            size_hint: None, None
+            size: '48dp', '48dp'
+            pos_hint: {'x': 0, 'top': 1}
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "continue"
+    
+          # Centering the GridLayout horizontally
+        MDTextField:
+            id: username_field
+            mode: "filled"
+            hint_text: "Username"
+            icon_right: "account"
+            helper_text: "Required"
+            helper_text_mode: "on_error"
+            size_hint_y: None
+            height: "40dp"
+            MDTextFieldHintText:
+                text: "User Name"
+                heper_text: "User Name "   # Adjust the height as needed
+        MDTextField:
+            id: password_field
+            mode: "filled"
+            guide_tex:"password"
+            icon_right: "eye"
+            helper_text: "Required"
+            helper_text_mode: "on_error"
+            password: True
+            size_hint_y: None
+            height: "40dp"
+            MDTextFieldHintText:
+                text: "Password"
+                heper_text: "Password"   # Adjust the height as needed
+            # Adjust the height as needed
+        MDTextField:
+            id: mobile_field
+            mode: "filled"
+            hint_text: "Mobile Number"
+            icon_right: "cellphone"
+            helper_text: "Required"
+            helper_text_mode: "on_error"
+            size_hint_y: None
+            height: "40dp"
+            MDTextFieldHintText:
+                text: "mobile number"
+                heper_text: "mobile number"  # Adjust the height as needed
+        Button:
+            text: "Submit"
+            size_hint: None, None
+            size: '200dp', '48dp'
+            background_color: (1,1,1,1)
+            pos_hint: {'center_x': 0.6,'center_y':0.5}
+            on_release:
+                root.validate_fields()
+
+<Dcheckdetailscreen>:
+    name: "dcheckdetails"
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        Button:
+            text: "SEE DETAILS"
+            size_hint_y: None  # Set size hint to None to use fixed height
+            height: dp(48)  # Set a fixed height
+            on_release: root.printCustomerDetails()
+
+        Label:
+            id: id_label
+            text: ""
+        Label:
+            id: font_label 
+            text:'_______________________________________________________________'       
+
+        Label:
+            id: name_label
+            text: ""
+        Label:
+            id: font_label 
+            text:'_______________________________________________________________'       
+
+        Label:
+            id: phone_label
+            text: ""
+        Label:
+            id: font_label 
+            text:'_______________________________________________________________'       
+
+        Label:
+            id: password_label
+            text: ""
+        Label:
+            id: font_label 
+            text:'_______________________________________________________________'       
+
+        Label:
+            id: current_location_label
+            text: ""
+        Label:
+            id: font_label 
+            text:'_______________________________________________________________'       
+
+        Label:
+            id: available_label
+            text: ""
+        Label:
+            id: font_label 
+            text:'_______________________________________________________________'       
+        Button:
+            text: "GO BACK"
+            size_hint_y: None  # Set size hint to None to use fixed height
+            height: dp(48)  # Set a fixed height
+            on_release: root.clearDetails()
+
+
+<Dchangepasswordscreen>:
+    name: "dchangepassword"
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '20dp'
+        spacing: '10dp'
+        
+        canvas.before:
+            Rectangle:
+                source: 'C:\\Users\\dhanu\\OneDrive\\Desktop\\2695135.webp'  # Path to your background image
+                pos: self.pos
+                size: self.size
+        MDIconButton:
+            icon: 'arrow-left'
+            size_hint: None, None
+            size: '48dp', '48dp'
+            pos_hint: {'x': 0.5, 'top': 1}
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "driver"        
+        MDTextField:
+            id: old_password
+            password: True
+            required: True
+            helper_text: "Required field"
+            helper_text_mode: "on_error"
+            mode: "filled"
+            size_hint_y: None
+            height: "40dp"
+            MDTextFieldHintText:
+                text: "Old Password"
+                heper_text: "Old Password" 
+
+
+        MDTextField:
+            id: new_password
+            password: True
+            required: True
+            helper_text: "Required field"
+            helper_text_mode: "on_error"
+            mode: "filled"
+            size_hint_y: None
+            height: "40dp"
+            MDTextFieldHintText:
+                text: "New Password"
+                heper_text: "New Password" 
+
+        MDTextField:
+            id: confirm_password
+            password: True
+            required: True
+            helper_text: "Required field"
+            helper_text_mode: "on_error"
+            mode: "filled"
+            size_hint_y: None
+            height: "40dp"
+            MDTextFieldHintText:
+                text: "Confirm Password"
+                heper_text: "Confirm Password"
+
+        Button:
+            text: "Update Password"
+            size_hint: None, None
+            size: 200, 48
+            pos_hint: {"center_x": 0.5}
+            on_release: root.validate_and_update_password()
+    # Add your layout code for the DChangePasswordScreen here
+
+
+<Dtriphistoryscreen>:
+    name: "dtriphistory"
+    BoxLayout:
+        orientation: 'vertical'
+        Button:
+            text: "SEE DETAILS"
+            size_hint_y: None  # Set size hint to None to use fixed height
+            height: dp(48)  # Set a fixed height
+            on_release: root.printCustomerDetails()
+
+        Label:
+            id: customer_id_label
+        Label:
+            id: font_label 
+            text:'_______________________________________________________________'       
+        Label:
+            id: customer_pickup_label
+        Label:
+            id: font_label 
+            text:'_______________________________________________________________'       
+        Label:
+            id: customer_destination_label
+        Label:
+            id: font_label 
+            text:'_______________________________________________________________'        
+        Label:
+            id: number_of_passengers_label
+        Label:
+            id: font_label 
+            text:'_______________________________________________________________'        
+        Label:
+            id: time_of_booking_label
+        Label:
+            id: font_label 
+            text:'_______________________________________________________________'        
+        Label:
+            id: booking_status_label
+        Label:
+            id: font_label 
+            text:'_______________________________________________________________'        
+        Label:
+            id: transaction_id_label
+
+        Widget: # Add a spacer to push the button to the bottom
+        Button:
+            text: "Go Back"
+            size_hint_y: None  # Set size hint to None to use fixed height
+            height: dp(48)  # Set a fixed height
+            on_release: root.clearDetails()
+    # Add your layout code for the DTripHistoryScreen here
+  # Add your layout code for the DTransactionHistoryScreen here
+
+<Dsignoutscreen>:
+    name: "dsignout"
+    BoxLayout:
+        orientation: 'vertical'
+        MDLabel:
+            text: "Sign Out Screen"
+            halign: "center"
+            valign: "middle"
+        Button:
+            text: "THANK YOU🚗❤️!"
+            size_hint_y: None
+            height: '48dp'
+            width: '300dp'
+            pos_hint: {'center_x': 0.5}    
+        Widget:    
+        Button:
+            size_hint_y: None
+            height: '48dp'
+            width: '300dp'
+            text: "Go Back"
+            on_release:  root.signOut()
+                
+<Driverpage>:
+    name: "driver"
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'DRIVER PAGE'
+            font_size: 24
+        Button:
+            text: "Check details"
+            on_release: root.checkDetails()
+        Button:
+            text: "Change password"
+            on_release: root.changePassword()
+        Button:
+            text: "Trip history"
+            on_release: root.tripHistory()
+        Button:
+            text: "Sign out"
+            on_release: root.signOut()
+
+
+<Riderpage>:
+    name: "rider"
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '20dp'
+        spacing: '10dp'
+        canvas.before:
+            Rectangle:
+                source: 'C:\\Users\\dhanu\\OneDrive\\Desktop\\wp1979790.jpg'  # Path to your background image
+                pos: self.pos
+                size: self.size
+
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {"center_y": 0.5}
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "continue"
+
+         
+            
+        
+        Button:
+            text: "Check details"
+            size_hint_y: None
+            height: '48dp'
+            width: '300dp'
+            pos_hint: {'center_x': 0.5}
+            on_release:
+                root.manager.transition.direction = 'left'
+                root.manager.current = "checkdetails"
+
+        Button:
+            text: "Change password"
+            size_hint_y: None
+            height: '48dp'
+            width: '300dp'
+            pos_hint: {'center_x': 0.5}
+            on_release: root.updateCustomerPassword()
+
+        Button:
+            text: "Book a trip"
+            size_hint_y: None
+            height: '48dp'
+            width: '300dp'
+            pos_hint: {'center_x': 0.5}
+            on_release: root.bookATrip()
+
+        Button:
+            text: "Cancel trip"
+            size_hint_y: None
+            height: '48dp'
+            width: '300dp'
+            pos_hint: {'center_x': 0.5}
+            on_release: root.cancelCustomerBooking()
+
+        Button:
+            text: "Booking history"
+            size_hint_y: None
+            height: '48dp'
+            width: '300dp'
+            pos_hint: {'center_x': 0.5}
+            on_release: root.getCustomerBookingHistory()
+
+
+        Button:
+            text: "Make transaction"
+            size_hint_y: None
+            height: '48dp'
+            width: '300dp'
+            pos_hint: {'center_x': 0.5}
+            on_release: root.makeCustomerTransaction()
+
+        Button:
+            text: "Sign out"
+            size_hint_y: None
+            height: '48dp'
+            width: '300dp'
+            pos_hint: {'center_x': 0.5}
+            on_release: root.signOut()
+
+
+# CheckDetailsScreen
+<Checkdetails>:
+    name: "checkdetails"
+    BoxLayout:
+        orientation: 'vertical'
+        Button:
+            text: "SEE DETAILS"
+            size_hint_y: None  # Set size hint to None to use fixed height
+            height: dp(48)  # Set a fixed height
+            on_release: root.printCustomerDetails()
+        Label:
+            id: id_label
+        Label:
+            id: font_label 
+            text:'_______________________________________________________________'   
+        Label:
+            id: name_label
+        Label:
+            id: font_label
+            text: '_______________________________________________________________' 
+        Label:
+            id: phone_label
+        Label:
+            id: font_label 
+            text: '________________________________________________________________'    
+        Label:
+            id: password_label
+            
+        Label:
+            id: font_label 
+            text: '________________________________________________________________'    
+        Widget: # Add a spacer to push the button to the bottom
+        Button:
+            text: "Go Back"
+            size_hint_y: None  # Set size hint to None to use fixed height
+            height: dp(48)  # Set a fixed height
+            on_release: root.clearDetails()
+
+
+
+<Changepasswordscreen>:
+    name: "changepassword"
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '20dp'
+        spacing: '10dp'
+        
+        canvas.before:
+            Rectangle:
+                source: 'C:\\Users\\dhanu\\OneDrive\\Desktop\\2695135.webp'  # Path to your background image
+                pos: self.pos
+                size: self.size
+        MDIconButton:
+            icon: 'arrow-left'
+            size_hint: None, None
+            size: '48dp', '48dp'
+            pos_hint: {'x': 0.5, 'top': 1}
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "rider"        
+        MDTextField:
+            id: old_password
+            password: True
+            required: True
+            helper_text: "Required field"
+            helper_text_mode: "on_error"
+            mode: "filled"
+            size_hint_y: None
+            height: "40dp"
+            MDTextFieldHintText:
+                text: "Old Password"
+                heper_text: "Old Password" 
+
+
+        MDTextField:
+            id: new_password
+            password: True
+            required: True
+            helper_text: "Required field"
+            helper_text_mode: "on_error"
+            mode: "filled"
+            size_hint_y: None
+            height: "40dp"
+            MDTextFieldHintText:
+                text: "New Password"
+                heper_text: "New Password" 
+
+        MDTextField:
+            id: confirm_password
+            password: True
+            required: True
+            helper_text: "Required field"
+            helper_text_mode: "on_error"
+            mode: "filled"
+            size_hint_y: None
+            height: "40dp"
+            MDTextFieldHintText:
+                text: "Confirm Password"
+                heper_text: "Confirm Password"
+
+        Button:
+            text: "Update Password"
+            size_hint: None, None
+            size: 200, 48
+            pos_hint: {"center_x": 0.5}
+            on_release: root.validate_and_update_password()
+
+
+
+<Booktripscreen>:
+    name: "booktrip"
+    canvas.before:
+        Color:
+            rgba: 0.8, 0.8, 0.8, 1  # Light gray background color
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(10)
+        spacing: dp(10)
+        
+        Label:
+            text: 'Book a Trip'
+            font_size: '20sp'
+            size_hint_y: None
+            height: dp(40)
+        
+        MDTextField:
+            id: pickup_location_field
+            mode: "filled"
+            hint_text: "Pickup Location"
+            icon_right: "map-marker"
+            helper_text: "Enter pickup location"
+            helper_text_mode: "on_error"
+            size_hint_y: None
+            height: dp(40)
+            multiline: False
+            MDTextFieldHintText:
+                text: "Pickup Location"
+                helper_text: "Enter pickup location"
+                
+        MDTextField:
+            id: destination_field
+            mode: "filled"
+            hint_text: "Destination"
+            icon_right: "map-marker"
+            helper_text: "Enter destination"
+            helper_text_mode: "on_error"
+            size_hint_y: None
+            height: dp(40)
+            multiline: False
+            MDTextFieldHintText:
+                text: "Destination"
+                helper_text: "Enter destination"
+            
+        MDTextField:
+            id: passengers_field
+            mode: "filled"
+            hint_text: "Number of Passengers"
+            icon_right: "account-group"
+            helper_text: "Enter number of passengers"
+            helper_text_mode: "on_error"
+            size_hint_y: None
+            height: dp(40)
+            input_filter: 'int'
+            multiline: False
+            MDTextFieldHintText:
+                text: "Number of Passengers"
+                helper_text: "Enter number of passengers"
+                
+        MDTextField:
+            id: pickup_time_field
+            mode: "filled"
+            hint_text: "Pickup Time"
+            icon_right: "calendar-clock"
+            helper_text: "Enter pickup time"
+            helper_text_mode: "on_error"
+            size_hint_y: None
+            height: dp(40)
+            multiline: False
+            MDTextFieldHintText:
+                text: "Pickup Time"
+                helper_text: "Enter pickup time"
+        Label:
+            text:"waiting time"
+        Spinner:
+            id: waiting_field
+            values: ["30 minutes", "50 minutes", "1 hour","more than one hour","None"]  # Add more options as needed
+            size_hint_y: None
+            height: '40dp'        
+            
+        MDTextField:
+            id: sharing_field
+            mode: "filled"
+            hint_text: "Sharing Status (True/False)"
+            icon_right: "share-variant"
+            helper_text: "Enter sharing status (True/False)"
+            helper_text_mode: "on_error"
+            size_hint_y: None
+            height: dp(40)
+            multiline: False
+            MDTextFieldHintText:
+                text: "Sharing Status (True/False)"
+                helper_text: "Enter sharing status (True/False)"
+            
+        BoxLayout:
+            size_hint_y: None
+            height: dp(40)
+            spacing: dp(10)
+            pos_hint: {'center_x': 0.5}
+            
+            Button:
+                text: 'Confirm Booking'
+                size_hint_x: None
+                width: self.parent.width * 0.4  # Button width is 40% of the parent width
+                on_release: root.bookATrip()
+                
+            Button:
+                text: 'Back'
+                size_hint_x: None
+                width: self.parent.width * 0.4  # Button width is 40% of the parent width
+                on_release: app.root.current = 'rider'  # Replace 'Mainpage' with the appropriate screen name
+
+
+# CancelTripScreen
+<Canceltripscreen>:
+    name: "canceltrip"
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        
+        MDLabel:
+            text: "Cancel Trip Screen"
+            halign: "center"
+            valign: "middle"
+        
+        # Confirmation Dialog for Canceling Trip
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: None
+            height: self.minimum_height
+            spacing: 10
+
+            Label:
+                text: "Are you sure you want to cancel the trip?"
+                size_hint_y: None
+                height: '40dp'
+                font_size: '16sp'
+                halign: 'center'
+
+            Button:
+                text: "Yes, Cancel Trip"
+                size_hint_y: None
+                height: '40dp'
+                on_release: root.cancel_trip()
+
+            Button:
+                text: "No, Go Back"
+                size_hint_y: None
+                height: '40dp'
+                on_release: app.root.current = "rider"
+
+# BookingHistoryScreen
+<Bookinghistoryscreen>:
+    name: "bookinghistory"
+    BoxLayout:
+        orientation: 'vertical'
+        Button:
+            text: "SEE DETAILS"
+            size_hint_y: None  # Set size hint to None to use fixed height
+            height: dp(48)  # Set a fixed height
+            on_release: root.printCustomerDetails()
+
+        Label:
+            id: customer_id_label
+        Label:
+            id: font_label 
+            text:'_______________________________________________________________'       
+        Label:
+            id: customer_pickup_label
+        Label:
+            id: font_label 
+            text:'_______________________________________________________________'       
+        Label:
+            id: customer_destination_label
+        Label:
+            id: font_label 
+            text:'_______________________________________________________________'        
+        Label:
+            id: number_of_passengers_label
+        Label:
+            id: font_label 
+            text:'_______________________________________________________________'        
+        Label:
+            id: time_of_booking_label
+        Label:
+            id: font_label 
+            text:'_______________________________________________________________'        
+        Label:
+            id: booking_status_label
+        Label:
+            id: font_label 
+            text:'_______________________________________________________________'        
+        Label:
+            id: transaction_id_label
+
+        Widget: # Add a spacer to push the button to the bottom
+        Button:
+            text: "Go Back"
+            size_hint_y: None  # Set size hint to None to use fixed height
+            height: dp(48)  # Set a fixed height
+            on_release: root.clearDetails()
+
+
+
+
+
+<Maketransactionscreen>:
+    name: 'maketransaction'
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        
+        # Transaction Details Section
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: None
+            height: self.minimum_height
+            spacing: 20
+            
+            Label:
+                text: "Transaction Details"
+                size_hint_y: None
+                height: '40dp'
+                font_size: '24sp'
+                bold: True
+                halign: 'center'
+                valign: 'middle'
+                text_size: self.size
+            
+            BoxLayout:
+                id: transaction_details_box
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+                opacity: 1  # Initially visible
+                spacing: 10
+
+                Label:
+                    id: transaction_info_label
+                    text: ""  # Initially empty, will be updated dynamically
+                    size_hint_y: None
+                    height: '200dp'  # Increased height for bigger details
+                    font_size: '18sp'
+                    text_size: self.width, None
+                    halign: 'left'
+                    valign: 'top'
+        
+        # Image holder for QR code
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: None
+            height: '100dp'
+            padding: 20
+            Image:
+                source: 'C:\\Users\\dhanu\\Downloads\\ssn cab booking system .png'  # Replace with actual path to your QR code image
+                size_hint: (None, None)
+                size: (150, 150)  # Adjust the size of the QR code image as needed
+                allow_stretch: True  # Allow stretching the image to fit the widget
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}  # Center the image
+
+        # Button to Show Transaction Details
+        Button:
+            text: "Show Details"
+            size_hint_y: None
+            height: '40dp'
+            on_release: root.update_transaction_details()  # Call the function to update transaction details
+            
+        # Payment Section
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 10
+            size_hint_y: None
+            height: self.minimum_height
+
+            Label:
+                text: "Select Payment Option:"
+                size_hint_y: None
+                height: '40dp'
+                font_size: '16sp'
+
+            Spinner:
+                id: payment_option_input
+                values: ["Credit Card", "Debit Card", "PayPal"]  # Add more options as needed
+                size_hint_y: None
+                height: '40dp'   
+
+            Button:
+                text: "Confirm Payment"
+                size_hint_y: None
+                height: '40dp'
+                on_release: root.confirm_payment()
+
+        # Go Back Button
+        Button:
+            text: "Go Back"
+            size_hint_y: None
+            height: '40dp'
+            on_release: root.go_back()
+
+
+
+
+
+<Signoutscreen>:
+    name: "signout"
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: "*******************************************************"
+            halign: "center"
+            valign: "middle"
+        Button:
+            text: "THANK YOU!!!"
+            size_hint_y: None
+            height: '48dp'
+            width: '300dp'
+            pos_hint: {'center_x': 0.5}    
+        Widget:    
+        Label:
+            text: "**********************************************************"
+            halign: "center"
+            valign: "middle"
+        Button:
+            text: "Go Back"
+            size_hint_y: None
+            height: '40dp'
+            on_release:  root.signOut()
+
